@@ -20,7 +20,7 @@ class App extends Component {
     }
     refreshList = () => {
         axios
-            .get("https://list-of-to-dos-api.herokuapp.com/api/todos/")
+            .get("/api/todos/")
             .then((res) => this.setState({ todoList: res.data }))
             .catch((err) => console.log(err));
     };
@@ -91,17 +91,17 @@ class App extends Component {
         this.toggle();
         if (item.id) {
             axios
-                .put(`https://list-of-to-dos-api.herokuapp.com/api/todos/${item.id}/`, item)
+                .put(`/api/todos/${item.id}/`, item)
                 .then((res) => this.refreshList());
             return;
         }
         axios
-            .post("https://list-of-to-dos-api.herokuapp.com/api/todos/", item)
+            .post("/api/todos/", item)
             .then((res) => this.refreshList());
     };
     handleDelete = (item) => {
         axios
-            .delete(`https://list-of-to-dos-api.herokuapp.com/api/todos/${item.id}`)
+            .delete(`/api/todos/${item.id}`)
             .then((res) => this.refreshList());
     };
     createItem = () => {
